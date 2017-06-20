@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+//aaa1
 #define N 100
 #define FILENAME "kadai-1-3.txt"
 #define errorout(a) printf("error : %s",a)
