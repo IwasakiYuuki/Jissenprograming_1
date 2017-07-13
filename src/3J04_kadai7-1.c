@@ -1,8 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define N 1000000
 
-void mergesort(int data[],int left,int right);
+void msort(int data[],int left,int right);
 
 int main(){
 	
@@ -25,33 +26,33 @@ int main(){
 	if(fp==NULL){
 		printf("ERROR : can not open file.\n");
 		exit(1);
+	}else{
+		printf("[*]Complate openning file.\n");
 	}
 
 	for(i=0;i<N;i++){
 		fscanf(fp,"%d",&data[i]);
 	}
-	mergesort(data,0,9);
+	printf("[*]Complate loading data.\n");
+	msort(data,0,N-1);
 //	puts("");
 
-	for(i=0;i<10;i++){
+	for(i=0;i<N;i++){
 		printf("%d\n",data[i]);
 	}
 
 	return 0;
 }
 
-void mergesort(int data[],int left,int right){
+void msort(int data[],int left,int right){
 	
 	int m,buf,i,j,z;
 
 	if(left==right)return;
 
 	m=(left+right)/2;
-	
-	printf("m=%d",m+1);
-
-	mergesort(data,left,m);
-	mergesort(data,m+1,right);
+	msort(data,left,m);
+	msort(data,m+1,right);
 
 	for(i=m;i>=left;i--){
 		buf=data[i];
