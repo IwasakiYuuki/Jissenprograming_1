@@ -1,5 +1,6 @@
 .PHONY:outcreate libcreate clean
 
+#a
 CC = gcc
 SOUCE_DIR = ./src/
 BIN_DIR = ./bin/
