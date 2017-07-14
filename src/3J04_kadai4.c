@@ -2,6 +2,8 @@
 #include <string.h>
 #define N 100
 
+//aaa
+
 void reverse(int *num);
 void insertsort(int *num);
 void selectsort(int *num);
