@@ -41,38 +41,23 @@ int main(){
 }
 
 void quicksort(int d[N],int a,int b){
-	int buf;
-	int first_a,first_b;
-
+	int buf,first_a,first_b;
 	if(a>=b)return;
 	first_a=a;
 	first_b=b;
-
 	while(1){
-		while(a<b&&d[a]<=d[first_a]){
-			a++;
-		}
-		while(a<b&&d[b]>d[first_a]){
-			b--;
-		}
+		while(a<b&&d[a]<=d[first_a])a++;
+		while(a<b&&d[b]>d[first_a])b--;
 		if(a>=b)break;
 		buf=d[a];
 		d[a]=d[b];
 		d[b]=buf;
-//		a++;
-//		b--;
 	}
-
 	a--;
 	buf=d[first_a];
 	d[first_a]=d[a];
 	d[a]=buf;
-
 	quicksort(d,first_a,a);
 	quicksort(d,a+1,first_b);
-
-//	for(i=a+1;i<b;i++){
-//		
-//	}
 	return;
 }
