@@ -41,7 +41,7 @@ int main(){
 	printf("[*]Complate loading data.\n");
 	msort2(data,0,N-1);
 //	puts("");
-
+//	msort(data,0,N-1);
 	for(i=0;i<N;i++){
 		printf("%d\n",data[i]);
 	}
