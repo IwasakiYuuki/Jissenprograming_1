@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #define BF 1
-#define KMP 0
+#define KMP 1
 #define TEXT_LENGTH 64
 #define PATN_LENGTH 16
 int next[PATN_LENGTH];
@@ -26,7 +26,7 @@ int brute_force_search(char text[], char pattern[])
 				printf(" ");
 			}
 			pattern = pcache;
-			printf("%s.....succes.\n",pattern);
+			printf("%s.....success.\n",pattern);
 			break;
 		}
 		text = (char *)(++tcache);
@@ -61,12 +61,50 @@ void init_next(char pattern[])
 		j++;
 	}
 	next[j]=-1;
+		i=0;
+	while(next[i]!=-1){
+		printf("next[%d] = %d\n",i,next[i]);
+		i++;
+	}
 	return;
 }
 
 /* 文字列textから文字列patternを検索する(KMP法) */
 int kmp_search(char text[], char pattern[])
 {
+	int i=0,j=0,count=0,ans=0;
+	char *pcache;
+
+	pcache = pattern;
+	while(*text!='\0'){
+		count=0;
+		while(*(text+count)!='\0'&&*(text+count)==*(pattern+count)){
+			count++;
+		}
+		if(*(pattern+count)=='\0'){
+			for(j=ans;j>0;j--){
+				printf(" ");
+			}
+			pattern = pcache;
+			printf("%s.....success.\n",pattern);
+			break;
+		}
+		for(j=ans;j>0;j--){
+			printf(" ");
+		}
+		for(j=count+1;j>0;j--){
+			printf("%c",*pattern);
+			pattern++;
+		}
+		pattern = pcache;
+		puts(".....false.");
+		ans+=next[count];
+		text+=next[count];
+	}
+	if(*text=='\0')
+		return -1;
+	else
+		return ans;
 }
 
 int main(void)
@@ -83,19 +121,24 @@ int main(void)
 	position = brute_force_search(text, pattern);
 	printf("position=%d\n",position);
 #endif
-	init_next(pattern);
-	printf("%d\n",next[0]);
-	printf("%d\n",next[1]);
-	printf("%d\n",next[2]);
-	printf("%d\n",next[3]);
-	printf("%d\n",next[4]);
-	printf("%d\n",next[5]);
-	printf("%d\n",next[6]);
+#if BF
+	printf("--- B F ---\n");
+	printf("pyokopyokomipyokopyokomepyokopyokopyokopyokomupyokopyoko\n");
+	position = brute_force_search("pyokopyokomipyokopyokomepyokopyokopyokopyokomupyokopyoko", "pyokopyokomu");
+	printf("position=%d\n",position);
+#endif
 #if KMP
 	printf("--- KMP ---\n");
 	init_next(pattern);
 	printf("%s\n",text);
 	position = kmp_search(text, pattern);
+	printf("position=%d\n",position);
+#endif
+#if KMP
+	printf("--- KMP ---\n");
+	init_next("pyokopyokomu");
+	printf("pyokopyokomipyokopyokomepyokopyokopyokopyokomupyokopyoko\n");
+	position = kmp_search("pyokopyokomipyokopyokomepyokopyokopyokopyokomupyokopyoko", "pyokopyokomu");
 	printf("position=%d\n",position);
 #endif
 	return 0;
