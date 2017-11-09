@@ -5,11 +5,11 @@
 #define TEXT_LENGTH 64
 #define PATN_LENGTH 256
 int next[PATN_LENGTH];
-/* ãƒ†ã‚­ã‚¹ãƒˆã¨ãƒ‘ã‚¿ãƒ¼ãƒ³ã®ä¸ä¸€è‡´ãŒè¦‹ã¤ã‹ã£ãŸã¨ãã«ã©ã‚Œã ã‘ãšã‚‰ã™ã‹ã‚’ç¤ºã™è¡¨ */
+/* ƒeƒLƒXƒg‚Æƒpƒ^[ƒ“‚Ì•sˆê’v‚ªŒ©‚Â‚©‚Á‚½‚Æ‚«‚É‚Ç‚ê‚¾‚¯‚¸‚ç‚·‚©‚ğ¦‚·•\ */
 int skip[PATN_LENGTH]={0};
 
 #define uchar unsigned char
-#define max(a,b) ((a)>(b)?a:b) /* äºŒã¤ã®æ•°a,bã®ã†ã¡å¤§ãã„æ–¹ã‚’è¿”ã™ãƒã‚¯ãƒ­ */
+#define max(a,b) ((a)>(b)?a:b) /* “ñ‚Â‚Ì”a,b‚Ì‚¤‚¿‘å‚«‚¢•û‚ğ•Ô‚·ƒ}ƒNƒ */
 
 int brute_force_search(uchar text[], uchar pattern[])
 {
@@ -49,7 +49,7 @@ int brute_force_search(uchar text[], uchar pattern[])
 	return i;
 }
 
-/* ãšã‚‰ã—è¡¨ã‚’ä½œæˆã™ã‚‹ */
+/* ‚¸‚ç‚µ•\‚ğì¬‚·‚é */
 void init_next(uchar pattern[])
 {
 	int i=0,j=0,count;
@@ -72,7 +72,7 @@ void init_next(uchar pattern[])
 	return;
 }
 
-/* æ–‡å­—åˆ—textã‹ã‚‰æ–‡å­—åˆ—patternã‚’æ¤œç´¢ã™ã‚‹(KMPæ³•) */
+/* •¶š—ñtext‚©‚ç•¶š—ñpattern‚ğŒŸõ‚·‚é(KMP–@) */
 int kmp_search(uchar text[], uchar pattern[])
 {
 	int i=0,j=0,count=0,ans=0;
@@ -111,7 +111,7 @@ int kmp_search(uchar text[], uchar pattern[])
 }
 
 
-/* BMæ³•ç”¨ã®ãšã‚‰ã—è¡¨ã‚’ä½œæˆã™ã‚‹ */
+/* BM–@—p‚Ì‚¸‚ç‚µ•\‚ğì¬‚·‚é */
 void init_skip(uchar pattern[])
 {
 	int ptn_num=0,i,k,cnt;
@@ -146,7 +146,7 @@ void init_skip(uchar pattern[])
 }
 
 
-/* æ–‡å­—åˆ—textã‹ã‚‰æ–‡å­—åˆ—patternã‚’æ¤œç´¢ã™ã‚‹(BMæ³•) */
+/* •¶š—ñtext‚©‚ç•¶š—ñpattern‚ğŒŸõ‚·‚é(BM–@) */
 int bm_search(uchar text[], uchar pattern[]) {
 	
 	int j=0,num = 0,i=0,t_num=0,p_pos =0;
