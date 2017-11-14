@@ -5,6 +5,7 @@ CC = gcc
 SOUCE_DIR = ./src/
 BIN_DIR = ./bin/
 OBJ = $(shell ls $(SOUCE_DIR))
+SCP_FILE = $(shell )
 HAEDER_DIR = ./include/
 LIB_DIR = ./lib/
 LIB = $(shell ls $(LIB_DIR))
@@ -13,6 +14,9 @@ CREATE_LOG = echo "[*]create files [$@] from [$^]."
 outcreate: $(addprefix $(BIN_DIR),$(OBJ:.c=.out))
 
 libcreate: $(addprefix $(LIB_DIR),$(LIB:.c=.lib))
+
+scp:
+
 
 
 $(addprefix $(BIN_DIR),%.out):$(addprefix $(BIN_DIR),%.o)

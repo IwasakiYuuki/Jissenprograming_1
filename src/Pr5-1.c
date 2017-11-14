@@ -161,7 +161,7 @@ void del(void)
 /* 所要時間の計算 */
 void calc(void)
 {
-	int sum=0, i;
+	int sum=0, i,flag;
 
 	STATION *current_addr;
 	char targetFrom[16],targetTo[16];
@@ -184,6 +184,22 @@ void calc(void)
 	printf("%sから",targetFrom);
 	printf("%sまでですね\n",targetTo);
 	/* 所要時間を計算する */
+	current_addr=head.next_addr;
+	flag=0;
+	while(strcmp(current_addr->name,targetTo)!=0){
+		if(!strcmp(current_addr->name,targetFrom))flag=1;
+		if(flag==0){
+			if(current_addr->next_addr==NULL)
+				break;
+			current_addr=current_addr->next_addr;
+			continue;
+		}
+		sum+=current_addr->time;
+		if(current_addr->next_addr!=NULL)
+			current_addr=current_addr->next_addr;
+		else
+			break;
+	}
 	printf("所要時間は%dです\n",sum);
 }
 
