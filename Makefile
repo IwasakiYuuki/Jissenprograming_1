@@ -1,11 +1,13 @@
 .PHONY:outcreate libcreate clean
 
-#a
 CC = gcc
 SOUCE_DIR = ./src/
 BIN_DIR = ./bin/
 OBJ = $(shell ls $(SOUCE_DIR)|grep ".c")
 SCP = $(shell ls $(SOUCE_DIR)|grep ".scp")
+SCP_USER = "s15023"
+SCP_ADDR = "tnct20.tokyo-ct.ac.jp"
+SCP_DIR = "/home/kitakosi/PracProg1/2017/3J04"
 HAEDER_DIR = ./include/
 LIB_DIR = ./lib/
 LIB = $(shell ls $(LIB_DIR))
@@ -16,7 +18,7 @@ outcreate: $(addprefix $(BIN_DIR),$(OBJ:.c=.out))
 libcreate: $(addprefix $(LIB_DIR),$(LIB:.c=.lib))
 
 scp: $(addprefix $(SOUCE_DIR),$(SCP:.scp=.c))
-	@scp $< s15023@tnct20.tokyo-ct.ac.jp:/home/kitakosi/PracProg1/2017/3J04
+	@scp $< $(SCP_USER)@$(SCP_ADDR):$(SCP_DIR)
 
 
 $(addprefix $(BIN_DIR),%.out):$(addprefix $(BIN_DIR),%.o)
@@ -35,6 +37,7 @@ $(addprefix $(LIB_DIR),%.o):$(addprefix $(LIB_DIR),%.c)
 
 $(addprefix $(SOUCE_DIR),%.c):$(addprefix $(SOUCE_DIR),%.scp)
 	@mv $< $@
+	@$(CREATE_LOG)
 
 
 clean:
