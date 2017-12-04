@@ -150,6 +150,7 @@ void del(void)
 		}
 		if(!strcmp(current_addr->next_addr->name,targetChar)){
 			current_addr->next_addr=current_addr->next_addr->next_addr;
+			break;
 		}
 		/* 先頭以外を削除したい場合 */
 		/* current_addrを更新 */
