@@ -75,7 +75,7 @@ void add(void)
 		HashTable[h] = p;
 	} else {
 		/* HashTable[h]に既にデータが存在していたときの処理 */
-		q=HashTable[h];
+		q=HashTable[i];
 		while(q->next_addr != NULL){
 			q = q->next_addr;
 		}
@@ -110,11 +110,11 @@ int del(void)
 	}
 	current_addr = HashTable[h];
 	while(current_addr->next_addr->no != point){
+		current_addr = current_addr->next_addr;
 		if(current_addr->next_addr->next_addr == NULL){
 			puts("NOT FOUND.");
 			return ERROR;
 		}
-		current_addr = current_addr->next_addr;
 	}
 	cache = (CHARACTER *)current_addr->next_addr;
 	current_addr->next_addr = current_addr->next_addr->next_addr;
