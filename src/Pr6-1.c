@@ -1,17 +1,17 @@
-/* ãƒãƒƒã‚·ãƒ¥æ³•ã«ã‚ˆã‚‹ãƒ‡ãƒ¼ã‚¿ç®¡ç†ï¼ˆãƒã‚§ã‚¤ãƒ³æ³•ç‰ˆï¼‰ */
+/* ƒnƒbƒVƒ…–@‚É‚æ‚éƒf[ƒ^ŠÇ—iƒ`ƒFƒCƒ“–@”Åj */
 
 #include <stdio.h>
 
 #define ERROR    -1
 #define HASH_SIZE  9
 typedef struct character {
-	int no;                         /* ã‚­ãƒ¼ */
-	char name[16];                  /* åå‰ */
-	struct character *next_addr;    /* æ¬¡ã®ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ */
+	int no;                         /* ƒL[ */
+	char name[16];                  /* –¼‘O */
+	struct character *next_addr;    /* Ÿ‚Ìƒf[ƒ^‚ÌƒAƒhƒŒƒX */
 } CHARACTER;
 CHARACTER *HashTable[HASH_SIZE];
 
-/* æ•°å€¤ã®å…¥åŠ›ç”¨é–¢æ•° */
+/* ”’l‚Ì“ü—Í—pŠÖ” */
 int get_num(void)
 {
 	int  i;
@@ -19,7 +19,7 @@ int get_num(void)
 	int  c = 0;
 	rewind(stdin);
 	for( i = 0; i < 5 && c != '\n' ; i++ ) {
-		/* 5ã‚±ã‚¿ã¾ã§ */
+		/* 5ƒPƒ^‚Ü‚Å */
 		c = getchar();
 		if ( c == '\n' ) break;
 		d = d * 10 + c - '0';
@@ -28,7 +28,7 @@ int get_num(void)
 	return d;
 }
 
-/* ãƒãƒƒã‚·ãƒ¥è¡¨ã‹ã‚‰ãƒªã‚¹ãƒˆæ§‹é€ ã§ä¸¦ã‚“ã§ã„ã‚‹æ§˜å­ã‚’è¡¨ç¤ºã™ã‚‹ */
+/* ƒnƒbƒVƒ…•\‚©‚çƒŠƒXƒg\‘¢‚Å•À‚ñ‚Å‚¢‚é—lq‚ğ•\¦‚·‚é */
 void disp(void)
 {
 	int i = 0;
@@ -47,34 +47,34 @@ void disp(void)
 	}
 }
 
-/* ãƒãƒƒã‚·ãƒ¥å€¤ã®è¨ˆç®— */
+/* ƒnƒbƒVƒ…’l‚ÌŒvZ */
 int hash(int h)
 {
 	return h % HASH_SIZE;
 }
 
-/* ãƒ‡ãƒ¼ã‚¿ã®è¿½åŠ  */
+/* ƒf[ƒ^‚Ì’Ç‰Á */
 void add(void)
 {
 	struct character *p;
 	struct character *q;
 	int i, j;
 	int h;
-	/* è¿½åŠ ãƒ‡ãƒ¼ã‚¿ã®ãŸã‚ã®ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ */
+	/* ’Ç‰Áƒf[ƒ^‚Ì‚½‚ß‚Ìƒƒ‚ƒŠ‚ğŠm•Û */
 	p=(CHARACTER *)malloc(sizeof(CHARACTER)*1);
-	printf("NOï¼");
+	printf("NO");
 	p->no = get_num();
-	printf("åå‰ï¼");
+	printf("–¼‘O");
 	fgets(p->name,16,stdin);
 	for( j=0; p->name[j] != '\n' && j != 15; j++ );
 	p->name[j] = '\0';
-	/* â†‘æ”¹è¡Œã‚³ãƒ¼ãƒ‰ã‚’å‰Šé™¤ã™ã‚‹ãŸã‚ã®å‡¦ç† */
+	/* ª‰üsƒR[ƒh‚ğíœ‚·‚é‚½‚ß‚Ìˆ— */
 	p->next_addr = NULL;   h = hash( p->no );
 	if( HashTable[h] == NULL ) {
-		/* HashTable[h]ã«ã¾ã ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã—ã¦ãªã‹ã£ãŸã¨ãã®å‡¦ç† */
+		/* HashTable[h]‚É‚Ü‚¾ƒf[ƒ^‚ª‘¶İ‚µ‚Ä‚È‚©‚Á‚½‚Æ‚«‚Ìˆ— */
 		HashTable[h] = p;
 	} else {
-		/* HashTable[h]ã«æ—¢ã«ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã—ã¦ã„ãŸã¨ãã®å‡¦ç† */
+		/* HashTable[h]‚ÉŠù‚Éƒf[ƒ^‚ª‘¶İ‚µ‚Ä‚¢‚½‚Æ‚«‚Ìˆ— */
 		q=HashTable[h];
 		while(q->next_addr != NULL){
 			q = q->next_addr;
@@ -84,18 +84,18 @@ void add(void)
 	disp();
 }
 
-/* ãƒ‡ãƒ¼ã‚¿ã®å‰Šé™¤ */
+/* ƒf[ƒ^‚Ìíœ */
 int del(void)
 {
 	int i, h;
 	struct character *current_addr,*head,*target,*cache;
 	int point;
 	disp();
-	printf("NOï¼");
+	printf("NO");
 	point = get_num();
 	h = hash(point);
-	/* ã‚­ãƒ¼ãŒè¦‹ã¤ã‹ã£ãŸã‚‰è©²å½“ãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤ã—ã¦disp()ã‚’å‘¼ã¶
-	 *         * ã‚­ãƒ¼ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã‚‰"NOT FOUND."ã‚’è¡¨ç¤ºã—ã¦ERRORã‚’è¿”ã™
+	/* ƒL[‚ªŒ©‚Â‚©‚Á‚½‚çŠY“–ƒf[ƒ^‚ğíœ‚µ‚Ädisp()‚ğŒÄ‚Ô
+	 *         * ƒL[‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½‚ç"NOT FOUND."‚ğ•\¦‚µ‚ÄERROR‚ğ•Ô‚·
 	 *                 */
 	head = HashTable[h];
 	if(head == NULL){
@@ -109,32 +109,32 @@ int del(void)
 		return 0;
 	}
 	current_addr = HashTable[h];
-	while(current_addr->next_addr->no != point){
-		if(current_addr->next_addr->next_addr == NULL){
+	while(current_addr->no != point){
+		if(current_addr->next_addr == NULL){
 			puts("NOT FOUND.");
 			return ERROR;
 		}
 		current_addr = current_addr->next_addr;
 	}
-	cache = (CHARACTER *)current_addr->next_addr;
-	current_addr->next_addr = current_addr->next_addr->next_addr;
+	cache = (CHARACTER *)current_addr;
+	current_addr = current_addr->next_addr;
 	free(cache);
 	disp();
 	return 0;
 }
 
-/* ãƒ‡ãƒ¼ã‚¿ã®æ¢ç´¢ */
+/* ƒf[ƒ^‚Ì’Tõ */
 int search(void)
 {
 	int i, h;
 	struct character *current_addr,*head,*target,*cache;
 	int point;
-	printf("NOï¼");
+	printf("NO");
 	point = get_num();
 	h = hash(point);
-	/* ã‚­ãƒ¼ãŒè¦‹ã¤ã‹ã£ãŸã‚‰è©²å½“ãƒ‡ãƒ¼ã‚¿(ã‚­ãƒ¼&å¯¾å¿œã™ã‚‹åå‰)ã‚’è¡¨ç¤ºã—ã¦disp()
-	 *         * ã‚’å‘¼ã¶
-	 *                 * ã‚­ãƒ¼ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã‚‰"NOT FOUND."ã‚’è¡¨ç¤ºã—ã¦ERRORã‚’è¿”ã™
+	/* ƒL[‚ªŒ©‚Â‚©‚Á‚½‚çŠY“–ƒf[ƒ^(ƒL[&‘Î‰‚·‚é–¼‘O)‚ğ•\¦‚µ‚Ädisp()
+	 *         * ‚ğŒÄ‚Ô
+	 *                 * ƒL[‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½‚ç"NOT FOUND."‚ğ•\¦‚µ‚ÄERROR‚ğ•Ô‚·
 	 *                         */
 	head = HashTable[h];
 	if(head == NULL){
@@ -159,19 +159,19 @@ int search(void)
 }
 
 
-/* ãƒ¡ãƒ‹ãƒ¥ãƒ¼ */
+/* ƒƒjƒ…[ */
 int menu(void)
 {
 	int c;
 	while( 1 ) {
-		printf("1.è¡¨\ç¤º\n");      // èª²é¡Œ5ã¨åŒæ§˜ã®ç†ç”±ã§ï¼Œ"è¡¨"ã¨"ç¤º"ã®é–“ã«"\"ã‚’æŒ¿å…¥
-		printf("2.è¿½åŠ \n");
-		printf("3.å‰Šé™¤\n");
-		printf("4.æ¢ç´¢\n");
-		printf("5.çµ‚äº†\n");
+		printf("1.•\\¦\n");      // ‰Û‘è5‚Æ“¯—l‚Ì——R‚ÅC"•\"‚Æ"¦"‚ÌŠÔ‚É"\"‚ğ‘}“ü
+		printf("2.’Ç‰Á\n");
+		printf("3.íœ\n");
+		printf("4.’Tõ\n");
+		printf("5.I—¹\n");
 		c = get_num();
 		if( c >= 1 && c <= 5 )  break;
-		else                                    printf("1ã€œ5ã¾ã§ã®æ•°å­—ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„\n");
+		else                                    printf("1`5‚Ü‚Å‚Ì”š‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢\n");
 	}
 	switch( c ) {
 		case 1:
@@ -195,7 +195,7 @@ int menu(void)
 int main(void)
 {
 	int i, end = 0;
-	/* ãƒãƒƒã‚·ãƒ¥è¡¨ã‚’åˆæœŸåŒ– */
+	/* ƒnƒbƒVƒ…•\‚ğ‰Šú‰» */
 	for( i = 0; i < HASH_SIZE; i++ )
 		HashTable[i] = NULL;
 	while( !end ) {
