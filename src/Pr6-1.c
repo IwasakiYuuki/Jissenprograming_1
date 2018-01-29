@@ -69,7 +69,8 @@ void add(void)
 	for( j=0; p->name[j] != '\n' && j != 15; j++ );
 	p->name[j] = '\0';
 	/* ↑改行コードを削除するための処理 */
-	p->next_addr = NULL;   h = hash( p->no );
+	p->next_addr = NULL;   
+	h = hash( p->no );
 	if( HashTable[h] == NULL ) {
 		/* HashTable[h]にまだデータが存在してなかったときの処理 */
 		HashTable[h] = p;
@@ -141,16 +142,20 @@ int search(void)
 		puts("NOT FOUND.");
 		return ERROR;
 	}
-	if(head->no == point)return head->no;
+	if(head->no == point){
+	printf("key : %d  name : %s\n",head->no,head->name);
+	printf("-|%d|%d:%d:%s:%d|-\n***********************************\n",h,head,head->no,head->name,head->next_addr);		
+		return 0;
+	}
 	current_addr = HashTable[h];
-	while(current_addr->next_addr->no != point){
-		current_addr = current_addr->next_addr;
-		if(current_addr->next_addr->next_addr == NULL){
+	while(current_addr->no != point){
+		if(current_addr->next_addr == NULL){
 			puts("NOT FOUND.");
 			return ERROR;
 		}
+		current_addr = current_addr->next_addr;
 	}
-	cache = current_addr->next_addr;
+	cache = current_addr;
 	printf("key : %d  name : %s\n",cache->no,cache->name);
 	printf("-|%d|%d:%d:%s:%d|-\n***********************************\n",h,cache,cache->no,cache->name,cache->next_addr);
 	disp();
