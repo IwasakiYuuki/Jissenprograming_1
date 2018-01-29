@@ -130,7 +130,7 @@ int main(void)
 	
     /* 表示 */
     print_path(end, begin);   // 実行の一例
-    printf("\nコストは%dです。\n",d[11][6]);
+    printf("\nコストは%dです。\n",d[begin][end]);
 
     return 0;
 }
