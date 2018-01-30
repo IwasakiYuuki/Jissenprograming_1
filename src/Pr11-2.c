@@ -69,7 +69,7 @@ void search(void)
     		d[i][j]=adjacent[i][j];
 			for(k=0;k<MAX_SIZE;k++){
 				if(d[i][j]>(d[i][k]+d[k][j])){
-					pre_vertex[i][j]=k;
+					pre_vertex[i][j]=pre_vertex[k][j];
 					d[i][j]=d[i][k]+d[k][j];
 				}
 			}
