@@ -20,7 +20,7 @@
         #define MAX_M   200
 
 void DynamicProgramming(int N, int Nsize[], int Nvalue[]){
-        int i,j;
+        int i,j,cache;
                 
         /* 現時点でナップザックに詰め込んだ荷物の価値の合計 */
         int total[MAX_M];
@@ -41,7 +41,7 @@ void DynamicProgramming(int N, int Nsize[], int Nvalue[]){
         for(i=0;i<AS;i++){
                 /* 大きさj(=Nsize[i])のナップザックに対して、荷物を詰め込んでみる */
 
-				for(j=0;j<N;j++){
+				for(j=0;j<=N;j++){
 					if(Nsize[i]<=j){
 						if((total[j-Nsize[i]]+Nvalue[i])>total[j]){
 							total[j]=total[j-Nsize[i]]+Nvalue[i];
@@ -57,8 +57,13 @@ void DynamicProgramming(int N, int Nsize[], int Nvalue[]){
                 printf("choice = ");
                 for(j=0;j<=N;j++)
                         printf("%2d ",choice[j]);
-                printf("\n");
         }
+        printf("\n");
+        cache=N;
+        do{
+            printf("荷物 %d (価値%d)を詰め込む\n",choice[cache],value[choice[cache]]);
+            cache-=size[choice[cache]];
+        }while(cache>0&&choice[cache]!=-1);
         
         /* どの荷物をナップザックに入れたかを表示する */
 }
@@ -70,6 +75,11 @@ int main(int argc, char *argv[]){
        /* 引数の数が誤っていないか、ナップザックの大きさが上限を超えていないか
         * 判定（適切な引数の数、もしくは値が設定されていない場合、再度入力を求める）
         */
+        
+        if(argc!=2){
+            printf("Pls input size of bag.\n");
+            return 0;
+        }
         
         /* コマンド引数からナップザックの大きさを得る */
         m = atoi(argv[1]);
