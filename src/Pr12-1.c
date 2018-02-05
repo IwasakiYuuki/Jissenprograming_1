@@ -57,13 +57,14 @@ void DynamicProgramming(int N, int Nsize[], int Nvalue[]){
                 printf("choice = ");
                 for(j=0;j<=N;j++)
                         printf("%2d ",choice[j]);
+                printf("\n");
         }
-        printf("\n");
         cache=N;
         do{
             printf("荷物 %d (価値%d)を詰め込む\n",choice[cache],value[choice[cache]]);
             cache-=size[choice[cache]];
         }while(cache>0&&choice[cache]!=-1);
+        printf("価値の合計 = %d\n\n",total[N]);
         
         /* どの荷物をナップザックに入れたかを表示する */
 }
