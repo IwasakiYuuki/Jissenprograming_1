@@ -77,13 +77,17 @@ int main(int argc, char *argv[]){
         * 判定（適切な引数の数、もしくは値が設定されていない場合、再度入力を求める）
         */
         
-        if(argc!=2){
-            printf("Pls input size of bag.\n");
-            return 0;
-        }
+        while(argc!=2){
+            printf("Pls input size of bag >>");
+            scanf("%d",&m);
+            if(m>0&&m<=MAX_M){
+                goto skip;
+            }
+       }
         
         /* コマンド引数からナップザックの大きさを得る */
         m = atoi(argv[1]);
+        skip:
         printf("Size of knapsack is %d\n",m);
         
         DynamicProgramming(m,size,value);
