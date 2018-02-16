@@ -23,10 +23,10 @@ void DynamicProgramming(int N, int Nsize[], int Nvalue[]){
         int i,j,cache;
                 
         /* 現時点でナップザックに詰め込んだ荷物の価値の合計 */
-        int total[MAX_M];
+        int total[MAX_M+1];
         
         /* 最後に選んだ荷物 */
-        int choice[MAX_M];
+        int choice[MAX_M+1];
         
         /* 荷物iを入れた時の価値の合計 */
         int repack_total;
@@ -77,11 +77,21 @@ int main(int argc, char *argv[]){
         * 判定（適切な引数の数、もしくは値が設定されていない場合、再度入力を求める）
         */
         
-        while(argc!=2){
-            printf("Pls input size of bag >>");
-            scanf("%d",&m);
+        if(argc==2){
+                m = atoi(argv[1]);
             if(m>0&&m<=MAX_M){
                 goto skip;
+            }else{
+                goto roop;
+            }
+        }else{
+            roop:
+            while(1){
+                printf("Pls input size of bag >>");
+                scanf("%d",&m);
+                    if(m>0&&m<=MAX_M){
+                    goto skip;
+                }
             }
        }
         
@@ -91,6 +101,5 @@ int main(int argc, char *argv[]){
         printf("Size of knapsack is %d\n",m);
         
         DynamicProgramming(m,size,value);
-        
         return 0;
 }
